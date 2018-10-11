@@ -8,7 +8,7 @@ import {
   transition
 } from '@angular/animations';
 
-declare  const ClassicEditor: any;
+declare  const CKEDITOR: any;
 declare var jQuery:any;
 
 @Component({
@@ -71,26 +71,7 @@ export class BookComponent implements OnChanges, AfterViewInit, AfterContentChec
   }
 
   ngOnInit() {
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) , {
-          ckfinder: {
-            uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-          },
-          language: 'zh-cn',
-          toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'imageUpload', 'bulletedList', 'numberedList', 'blockQuote', '|', 'alignment:left', 'alignment:center', 'alignment:right','undo', 'redo','table','image','imageStyle:full', 'imageStyle:side'],
-          heading: {
-              options: [
-                  { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                  { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                  { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-              ]
-          },
-          fontSize: ['tiny','small','default','big','huge']
-        })
-        .then(editor => this.editor = editor)
-        .catch( error => {
-            console.error( error );
-        } );
+      CKEDITOR.replace( 'content');
   }
 
   getData(){
@@ -121,12 +102,11 @@ export class BookComponent implements OnChanges, AfterViewInit, AfterContentChec
   onResize() {
     let backgroundHeight = this.backgroundDiv.nativeElement.offsetHeight;
     let metaHeight = this.metaDiv.nativeElement.offsetHeight;
-    let topHeight = jQuery(".ck-editor__top").height();
-    let targetHeight = backgroundHeight - metaHeight- topHeight;
-    // jQuery("#cke_editor").css("height", (targetHeight) + "px");
-    // jQuery(".cke_inner").css("height", (targetHeight) + "px");
-    jQuery(".ck-content").css("max-height", (targetHeight) + "px");
-    jQuery(".ck-content").css("min-height", (targetHeight) + "px");
+    let topHeight = jQuery("#cke_1_top").height();
+    let targetHeight = backgroundHeight - metaHeight- topHeight -10;
+    jQuery("#cke_editor").css("height", (targetHeight) + "px");
+    jQuery(".cke_inner").css("height", (targetHeight) + "px");
+    jQuery(".cke_contents").css("height", (targetHeight) + "px");
     
     this.bodyDiv.nativeElement.height = targetHeight;
     // jQuery("#cke_editor").css("min-height", (targetHeight) + "px");
