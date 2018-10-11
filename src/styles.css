@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 16px;
+}
+
+blockquote {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    border-left: 5px solid #ccc;
+    overflow: hidden;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    margin-left: 0;
+    font-style: italic;
+    font-family: sans-serif, -webkit-body;
+    font-size: 16px;
+}
+
+
+/* .ck-reset,
+.ck-editor,
+.ck-rounded-corners {
+    height: 100%;
+}
+
+.ck-content {
+    height: 100%;
+}
+
+.ck-editor__main {
+    height: 100%;
+}
+
+.ck.ck-reset {
+    height: 100%;
+} */
+
+.ck-content {
+    max-height: 100px;
+    min-height: 100px;
+}

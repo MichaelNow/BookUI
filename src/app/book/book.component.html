@@ -1,0 +1,31 @@
+<div style="height:100%">
+    <div class="menu" [@menuToggled]="menuOpen">
+        <div class="seachbar">
+            <input class="search_input" type="text" placeholder="搜索">
+        </div>
+        <book-tree></book-tree>
+    </div>
+    <div class="body" [@bodyToggled]="menuOpen">
+        <div class="header" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+            <span class="size_btn" [opacity]="iconOpacity" (click)="toggleMenu()" class="menu_toggle glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            <span class="title" [ngClass]="{hide_dom: !titleHover}">ddd</span>
+            <span class="size_btn" [opacity]="iconOpacity" class="user glyphicon glyphicon-user" aria-hidden="true"></span>
+            <span class="size_btn" [opacity]="iconOpacity" class="book_mark glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <span class="size_btn" [opacity]="iconOpacity" (click)="showEditor(true)" class="edit glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        </div>
+        <div class="content">
+            <div [innerHTML]="content | html"></div>
+        </div>
+    </div>
+</div>
+<div #editorBackground (window:resize)="onResize()" class="editor_background" id="editor_container" [ngStyle]="{'display':isEditing ? 'block' : 'none'}">
+    <div #editorContext class="editor_context">
+        <div #editorMeta class="context_meta" style="display:block;position:relative">
+            <span class="btn btn-default" (click)="showEditor(false)">Save</span><span class="btn btn-default" (click)="showEditor(false)">Cancel</span>
+            <input class="seachbar" placeholder="标题" />
+        </div>
+        <div #editorBody class="context_body">
+            <textarea name="content" id="editor" placeholder="文本内容"></textarea>
+        </div>
+    </div>
+</div>
